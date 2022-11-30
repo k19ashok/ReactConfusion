@@ -1,16 +1,15 @@
-import { Navbar, NavbarBrand } from 'reactstrap';
-import './App.css';
-import Menu from './components/MenuComponent';
+import React, { Component } from "react";
+import "./App.css";
+import Main from "./components/MainComponent";
 
-function App() {
-  return (
-    <div>
-      <Navbar dark color='secondary'>
-          <NavbarBrand href='/'>CONFUSION</NavbarBrand>
-      </Navbar>
-      <Menu />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Main />
+      </div>
+    );
+  }
 }
 
 export default App;
