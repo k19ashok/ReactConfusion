@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 
-function RenderComments({coms}) {
+function RenderComments({ coms }) {
   const comments = coms.map((comment) => {
     return (
       <li key={comment.id}>
@@ -34,6 +36,18 @@ function DishDetail(props) {
     return (
       <div className="container">
         <div className="row">
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/menu">Menu</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+          </Breadcrumb>
+        </div>
+        <div className="col-12">
+          <h3>{dish.name}</h3>
+          <hr />
+        </div>
+        <div className="row">
           <div className="col-12 col-md-5 m-1">
             <Card key={dish.id}>
               <CardImg width="100%" src={dish.image} alt={dish.name} />
@@ -44,7 +58,7 @@ function DishDetail(props) {
             </Card>
           </div>
           <div className="col-12 col-md-5 m-1">
-            <RenderComments coms={props.selectedDish.comments} />
+            <RenderComments coms={props.comments} />
           </div>
         </div>
       </div>
