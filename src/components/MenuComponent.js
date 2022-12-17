@@ -8,6 +8,7 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Loading } from "./LoadingComponent";
 
 function RenderItem({ dish }) {
   return (
@@ -23,7 +24,7 @@ function RenderItem({ dish }) {
 }
 
 function Menu(props) {
-  const menu = props.dishes.map((dish) => {
+  const menu = props.dishes.dishes.map((dish) => {
     return (
       <div key={dish.id} className="col-12 col-md-5 m-1">
         <RenderItem dish={dish} />
@@ -31,6 +32,23 @@ function Menu(props) {
     );
   });
 
+  if (props.dishes.isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
+      </div>
+    );
+  } else if (props.dishes.errMess) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h1>{props.dishes.errMess}</h1>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="container">
       <div className="row">
